@@ -1,0 +1,29 @@
+--- a/pppd/pcap_pcc.c
++++ b/pppd/pcap_pcc.c
+@@ -5,6 +5,7 @@
+ #include <string.h>
+ #include <errno.h>
+ #include "pppd.h"
++#include "options.h"
+ 
+ int pcap_pre_compiled (char * fname, struct bpf_program *p)
+ {
+--- a/pppd/plugins/pptp/pptp.c
++++ b/pppd/plugins/pptp/pptp.c
+@@ -47,6 +47,7 @@
+ #include "ipcp.h"
+ #include "ccp.h"
+ #include "pathnames.h"
++#include <options.h>
+ 
+ #include "pptp_callmgr.h"
+ #include <net/if.h>
+@@ -316,7 +317,7 @@ static int get_call_id(int sock, pid_t g
+ 
+ void plugin_init(void)
+ {
+-    add_options(Options);
++    ppp_add_options(Options);
+ 
+     info("PPTP plugin version %s", PPTP_VERSION);
+ 
