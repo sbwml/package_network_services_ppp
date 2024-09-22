@@ -1,0 +1,23 @@
+--- a/pppd/crypto.c
++++ b/pppd/crypto.c
+@@ -34,6 +34,7 @@
+ 
+ #include <stdlib.h>
+ #include <string.h>
++#include <stdio.h>
+ 
+ #include "pppd.h"
+ #include "crypto.h"
+@@ -236,10 +237,12 @@ int PPP_crypto_deinit()
+     }
+ #endif
+ 
++#ifdef PPP_WITH_OPENSSL
+ #if OPENSSL_VERSION_NUMBER < 0x10100000L
+     ERR_free_strings();
+ #endif
+     return 1;
++#endif
+ }
+ 
+ #ifdef UNIT_TEST
